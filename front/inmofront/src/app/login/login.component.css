@@ -1,0 +1,47 @@
+.contendor-padre{
+    width: 100%;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formLogin{
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.ng-valid:not(form) .ng-touched{
+    border-left: 2px solid greenyellow;
+}
+
+.ng-invalid:not(form) .ng-touched{
+    border-left: 2px solid rgb(255, 47, 47);
+}
+
+
+.input-email{
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: rgb(225, 225, 225);
+}
+
+.input-password{
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: rgb(225, 225, 225);
+}
+
+
+.btn-submit{
+    height: 40px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}

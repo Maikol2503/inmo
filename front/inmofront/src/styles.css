@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    border: none;
+}
+
+.ng-valid:not(form) .ng-touched{
+    border-left: 2px solid greenyellow;
+}
+
+.ng-invalid:not(form) .ng-touched{
+    border-left: 2px solid rgb(255, 47, 47);
+}
