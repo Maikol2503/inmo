@@ -1,0 +1,210 @@
+.nuevo-anuncio-formulario{
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(230, 230, 230);
+    position: relative;
+}
+
+
+
+  /* .nuevo-anuncio-formulario form{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 50px;
+  } */
+
+
+  .div-inputs-datos-propiedad{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  /* .nuevo-anuncio-formulario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  } */
+  
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  input,
+  textarea,
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+
+.checkbox-group{
+   margin-top: 10px;
+}
+
+
+.checkbox-group label{
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-inputs-datos-cliente{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  button.btn.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: auto;
+  }
+  
+  button.btn.btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  button.btn.btn-primary:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.image-preview-container {
+  margin-top: 20px;
+}
+
+.image-preview-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.image-preview {
+  border: 1px solid #ccc;
+  padding: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #d1d1d1;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  @media (max-width: 600px) {
+    .nuevo-anuncio-formulario {
+      padding: 10px;
+    }
+  }
+  

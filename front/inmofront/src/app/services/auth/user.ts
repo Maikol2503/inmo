@@ -1,8 +1,9 @@
 export interface User {
     id:number
-    name?:string
-    lastName?:string
-    email?:string
-    message?:string
-    
+    nombre?:string
+    correo:string
+    foto?:string
+    clave?:string
+    activo?:string
+    rol?:string
 }

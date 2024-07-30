@@ -13,12 +13,14 @@ export class LoginService {
   constructor(private http:HttpClient, private router:Router) { }
   
   currenUserLoginOn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  currenUserToken:BehaviorSubject<User> = new BehaviorSubject<User>({id:0, email:''})
-
+  isAdministrador:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  currenUserData:BehaviorSubject<User> = new BehaviorSubject<User>({id:0, correo:''})
  
   private url = 'http://127.0.0.1:8000'; // Ajusta la ruta según la ubicación del archivo
   email: string = '';
   token_key = 'token'
+
+
 
   login(credenciales:LoginRequest):Observable<any>{
     const body = new HttpParams()
@@ -32,10 +34,19 @@ export class LoginService {
     return this.http.post<any>(`${this.url}/token`, body.toString(), { headers }).pipe(
       tap(response =>{
         if (response.access_token){
-          console.log(response.access_token)
-          this.setToken(response.access_token)
+          this.currenUserLoginOn.next(true)
+          this.setToken(response.access_token) // guardo en localstorage
+          this.getUserData().subscribe(userData => {
+            this.currenUserData.next(userData);
+            if(userData.rol != 'admisnistrador'){
+              this.isAdministrador.next(false)
+            } else{
+              this.isAdministrador.next(true)
+            }
+          });
         }
-      })
+      }),
+      catchError(this.handleError)
     )
   }
 
@@ -49,7 +60,9 @@ export class LoginService {
     return localStorage.getItem(this.token_key)
   }
 
-
+  
+  //Valido si el token del usuario sigue siendo valido
+  //y se si sigue logueado o no
   isAuthenticated():boolean{
     const token = this.getToken()
     if(!token){
@@ -68,108 +81,50 @@ export class LoginService {
 
 
 
-
-
-
-
-
-
   getUserData(): Observable<any> {
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token.replace(/^"|"$/g, '')}`
       });
-      return this.http.get(`${this.url}/users/me`, { headers });
+
+      return this.http.get(`${this.url}/users/me`, { headers }).pipe(
+        catchError(error => {
+          console.error('Error fetching user data', error);
+          return throwError('Error fetching user data');
+        })
+      );
+    } else {
+      return throwError('No token found');
     }
-    return new Observable(observer => {
-      observer.error('No token found');
-    });
   }
 
 
 
+  private handleError (error:HttpErrorResponse){
 
+    if(error.status === 0){
+      console.error("Se a producido un error",error.error)
+    } else{
+      console.error("Se retorno el codigo de error", error.status, error.error)
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // loginPrueba(credenciales: LoginRequest) {
-  //   const body = new HttpParams()
-  //     .set('username', credenciales.email)  // Asegúrate de usar los valores de credenciales
-  //     .set('password', credenciales.password);
-  
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/x-www-form-urlencoded'
-  //   });
-  
-  //   return this.http.post<any>(`${this.dataUrlPrueba}/token`, body.toString(), { headers })
-  //     .pipe(map(token => {
-  //       console.log(token);
-  //       // login exitoso si hay un token jwt en la respuesta
-  //       if (token && token.access_token) {
-  //         // almacenar detalles del usuario y token jwt en el almacenamiento local para mantener al usuario conectado entre recargas de página
-  //         localStorage.setItem('token', JSON.stringify(token));
-  //         this.currenUserToken.next(token);
-  //         this.currenUserLoginOn.next(true)
-  //       }
-  //       return token;
-  //     }));
-  // }
-
-
-  
-
-  // login(credenciales:LoginRequest):Observable<User>{
-
-  //   return this.http.get<User>(this.dataUrl).pipe(
-
-  //     tap((userData:User)=>{
-  //       this.currenUserToken.next(userData);
-  //       this.currenUserLoginOn.next(true)
-  //     }),
-       
-  //     catchError(this.handleError)
-  //   )
-    
-  // }
-
-
-  
-
-  // private handleError (error:HttpErrorResponse){
-  //   if(error.status === 0){
-  //     console.error("Se a producido un error",error.error)
-  //   } else{
-  //     console.error("Se retorno el codigo de error", error.status, error.error)
-  //   }
-
-  //   return throwError(()=> new Error('Algo falló, por favor intente nuevamente'))
-  // }
-
-
-
+    return throwError(()=> new Error('Algo falló, por favor intente nuevamente'))
+  }
 
 
    get userData():Observable<User>{
-      return this.currenUserToken.asObservable();
+      return this.currenUserData.asObservable();
    }
 
    get userLoginOn():Observable<boolean>{
       return this.currenUserLoginOn.asObservable();
    }
+
+   get isAdministradorFun():Observable<boolean>{
+    return this.isAdministrador.asObservable();
+ }
 
 
 

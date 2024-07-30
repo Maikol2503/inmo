@@ -1,0 +1,14 @@
+.container{
+    width: 100%;
+}
+
+.btn-logout{
+    padding: 10px;
+    background-color: rgba(255, 222, 173, 0);
+}
+
+
+h1{
+    margin-top: 30px;
+    color: rgb(80, 80, 80);
+}

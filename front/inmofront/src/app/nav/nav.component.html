@@ -1,0 +1,13 @@
+<div class="nav-container-padre">
+    <p class="logo">inmoYS</p>
+    <ul class="lista">
+      <li class="btn-home" routerLink="/inicio" [ngClass]="{'ruta_activa': rutaActiva === '/inicio'}">
+        <fa-icon [icon]="['fas', 'th']" style="font-size: 20px;"></fa-icon>
+        <p>Home</p>
+      </li>
+      <li class="btn-publicar-inmueble" routerLink="/publicar-inmueble" [ngClass]="{'ruta_activa': rutaActiva === '/publicar-inmueble'}">
+        <fa-icon [icon]="['fas', 'plus']" style="font-size: 20px;"></fa-icon>
+        <p>Publicar inmueble</p>
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,273 @@
+<!-- nuevo-anuncio-piso.component.html -->
+ 
+<div class="nuevo-anuncio-formulario">
+    <h2 style="margin-top: 30px;">Datos de la Propiedad</h2>
+    <form (ngSubmit)="onSubmit(nuevaPropiedadForm)" #nuevaPropiedadForm="ngForm">
+      <div class="div-inputs-datos-propiedad">
+        <!-- Campo Título -->
+        <div class="form-group">
+          <label for="titulo">Título:</label>
+          <input
+            type="text"
+            id="titulo"
+            class="form-control"
+            name="titulo"
+            ngModel
+            required
+          />
+        </div>
+
+        <!-- Campo Precio -->
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input
+            type="number"
+            id="precio"
+            class="form-control"
+            name="precio"
+            ngModel
+            required
+          />
+        </div>
+
+        <!-- Campo Tipo de Propiedad -->
+        <div class="form-group">
+          <label for="tipo">Tipo de Propiedad:</label>
+          <select
+            id="tipo"
+            class="form-control"
+            name="tipo"
+            ngModel
+            required
+          >
+            <option value="apartamento">Apartamento</option>
+            <option value="casa">Casa</option>
+            <option value="oficina">Oficina</option>
+            <option value="terreno">Terreno</option>
+          </select>
+        </div>
+
+        <!-- orientacion del piso -->
+        <div class="form-group">
+          <label for="orientacion">Orientacion del piso:</label>
+          <select
+            id="orientacion"
+            class="form-control"
+            name="orientacion"
+            ngModel
+            required
+          >
+            <option value="interior">Interior</option>
+            <option value="exterior">Exterior</option>
+          </select>
+        </div>
+
+
+        <!-- Campo tipo de transaccion-->
+        <div class="form-group">
+          <label for="tipo">Tipo de transaccion:</label>
+          <select
+            id="tipo"
+            class="form-control"
+            name="tipo"
+            ngModel
+            required
+          >
+            <option value="compra">compra</option>
+            <option value="venta">venta</option>
+            <option value="alquiler">alquiler</option>
+          </select>
+        </div>
+    
+        
+        <!-- Campo Número de Habitaciones -->
+        <div class="form-group">
+          <label for="habitaciones">Número de Habitaciones:</label>
+          <input
+            type="number"
+            id="habitaciones"
+            class="form-control"
+            name="habitaciones"
+            ngModel
+            required
+          />
+        </div>
+    
+        <!-- Campo Número de Baños -->
+        <div class="form-group">
+          <label for="banos">Número de Baños:</label>
+          <input
+            type="number"
+            id="banos"
+            class="form-control"
+            name="banos"
+            ngModel
+            required
+          />
+        </div>
+
+
+    
+        <!-- Campo Ubicación -->
+        <div class="form-group">
+          <label for="ubicacion">Ubicación:</label>
+          <input
+            type="text"
+            id="ubicacion"
+            class="form-control"
+            name="ubicacion"
+            ngModel
+            required
+          />
+        </div>
+
+
+         <!-- Campo Imágenes -->
+         <div class="form-group">
+          <label for="imagenes">Imágenes:</label>
+          <input
+            type="file"
+            id="imagenes"
+            class="form-control"
+            name="imagenes"
+            (change)="onFileSelected($event)"
+            multiple
+            required
+          />
+        </div>
+        
+
+        <!-- Campo Descripción -->
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea
+            id="descripcion"
+            class="form-control"
+            name="descripcion"
+            ngModel
+            required
+          ></textarea>
+        </div>
+
+        <!-- Campo Caracteristicas adicionales -->
+        <div class="form-group">
+          <label>Características adicionales:</label>
+          <div class="checkbox-group">
+            <label>
+              Piscina
+              <input type="checkbox" name="piscina" [(ngModel)]="piscina" /> 
+            </label>
+            <label>
+              Trastero
+              <input type="checkbox" name="trastero" [(ngModel)]="trastero" /> 
+            </label>
+            <label>
+              Garaje
+              <input type="checkbox" name="garaje" [(ngModel)]="garaje" /> 
+            </label>
+            <label>
+              Gimnasio
+              <input type="checkbox" name="gimnasio" [(ngModel)]="gimnasio"/>
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <h2 style="margin-top: 50px;">Datos del propietario</h2>
+      <div class="div-inputs-datos-cliente">
+
+        <!-- Campo nombre -->
+        <div class="form-group">
+          <label for="nombre">nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            name="nombre"
+            ngModel
+            required
+          />
+        </div>
+
+        <!-- Campo apellido -->
+        <div class="form-group">
+          <label for="apellido">apellido:</label>
+          <input
+            type="text"
+            id="apellido"
+            class="form-control"
+            name="apellido"
+            ngModel
+            required
+          />
+        </div>
+
+        
+
+        <!-- Campo documento -->
+        <div class="form-group">
+          <label for="documento">documento:</label>
+          <input
+            type="text"
+            id="documento"
+            class="form-control"
+            name="documento"
+            ngModel
+            required
+          />
+        </div>
+
+        <!-- Campo email -->
+        <div class="form-group">
+          <label for="correo">correo:</label>
+          <input
+            type="text"
+            id="correo"
+            class="form-control"
+            name="correo"
+            ngModel
+            required
+          />
+        </div>
+
+        <!-- Campo telefono -->
+        <div class="form-group">
+          <label for="telefono">telefono:</label>
+          <input
+            type="text"
+            id="telefono"
+            class="form-control"
+            name="telefono"
+            ngModel
+            required
+          />
+        </div>
+        
+      </div>
+      
+     
+      
+     
+    <div *ngIf="totalImageSizeMB > 0">
+      <p>Tamaño total de las imágenes seleccionadas: {{ totalImageSizeMB | number: '1.2-2' }} MB</p>
+    </div>
+      <!-- Botón Enviar -->
+      <button type="submit" class="btn btn-primary" [disabled]="!nuevaPropiedadForm.valid">
+        Publicar
+      </button>
+    </form>
+
+     <!-- Display Image Previews -->
+    <div class="image-preview-container" *ngIf="imagePreviews.length > 0">
+      <h3>Previsualización de Imágenes:</h3>
+      <div class="image-grid">
+        <div class="image-preview" *ngFor="let img of imagePreviews">
+          <img [src]="img" alt="Previsualización de imagen" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
